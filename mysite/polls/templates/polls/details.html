@@ -1,0 +1,10 @@
+{% load static %}
+<link rel="shortcut icon" type="image/svg" href="{% static 'images/favicon.svg' %}" >
+
+<h1> Question {{ question.id }}</h1>
+<h2>{{ question.question_text }}</h2>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.votes }} Votes - <strong>{{ choice.choice_text }}</strong></li>
+{% endfor %}
+</ul>

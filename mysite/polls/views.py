@@ -1,14 +1,20 @@
-from django.shortcuts import HttpResponse, get_object_or_404, get_list_or_404
-from . models import Question, Choice
+from django.shortcuts import HttpResponse, render, get_object_or_404
+
+from . models import Question
 
 def index(request):
     latest_questions = Question.objects.order_by("-pub_date")[:5]
-    result = "<br>".join([q.question_text for q in latest_questions])
-    return HttpResponse(result)
+    context = {
+        "latest_questions": latest_questions,
+    }
+    return render(request, "polls/index.html", context)
 
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    return HttpResponse(f"You're looking at question {question_id}: {question.first()}")
+    context = {
+        "question": question,
+    }
+    return render(request, "polls/details.html", context)
     
 def results(request, question_id):
     response = "You're looking at the results of %s"
