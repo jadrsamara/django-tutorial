@@ -2,9 +2,9 @@
 <link rel="shortcut icon" type="image/svg" href="{% static 'images/favicon.svg' %}" >
 
 <h1>Latest Questions:</h1>
-{% if latest_questions %}
+{% if latest_question_list %}
 <ul>
-    {% for question in latest_questions %}
+    {% for question in latest_question_list %}
     <li><a href="{% url 'polls:detail' question.id %}">{{ question.pub_date }} - <strong>{{ question.question_text }}</strong></a></li>
     {% endfor %}
 </ul>
