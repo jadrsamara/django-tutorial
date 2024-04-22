@@ -23,7 +23,7 @@ class Question(models.Model):
         """
         checks if the question was published in the last day
         """
-        return self.pub_date >= timezone.now() - timedelta(days=1)
+        return timezone.now() >= self.pub_date >= timezone.now() - timedelta(days=1)
 
 
 class Choice(models.Model):
